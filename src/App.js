@@ -1,23 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import { AddToCart, RemoveFromCart ,EmptyCart } from "./redux/action";
+import { useDispatch } from "react-redux";
+import Navbar from "./component/Navbar/Navbar";
 
 function App() {
+  const dispatch = useDispatch();
+  const Product = {
+    name: "Phone",
+    type: "vivo",
+    country: "china",
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar />
+      <h1>Happy Learning</h1>
+      <div>
+        <button onClick={() => dispatch(AddToCart(Product))}>
+          Add to cart
+        </button>
+      </div>
+      <div>
+        <button onClick={() => dispatch(RemoveFromCart(Product))}>
+          Remove from cart
+        </button>
+      </div>
+      <div>
+        <button onClick={() => dispatch(EmptyCart(Product))}>
+          Empty cart
+        </button>
+      </div>
     </div>
   );
 }
